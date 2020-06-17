@@ -1,0 +1,121 @@
+#include<stdlib.h>
+#include<stdio.h>
+struct node
+{
+    int data;
+    struct node *next;
+};
+void insertfrist(struct node **head,int key)
+{
+    struct node *temp=(struct node*)malloc(sizeof(struct node));
+    temp->data=key;
+    if(*head==NULL)
+    {
+        temp->next=NULL;
+        *head=temp;
+
+    }
+    else{
+        temp->next=*head;
+        *head=temp;
+
+    }
+}
+void insertmiddle(struct node *head,int count,int key)
+{
+    int t=1;
+    struct node *temp=(struct node*)malloc(sizeof(struct node));
+    temp->data=key;
+    struct node *na;
+    na=head;
+    while(t!=count)
+    {
+        na=na->next;
+        t++;
+    }
+    temp->next=na->next;
+    na->next=temp;
+}
+void insertend(struct node *head,int key)
+{
+    struct node *temp=(struct node*)malloc(sizeof(struct node));
+    temp->data=key;
+    struct node *last=head;
+    while(last->next!=NULL)
+    {
+        last=last->next;
+    }
+    last->next=temp;
+    temp->next=NULL;
+}
+int length(struct node *head)
+{
+    int count=1;
+    while(head->next!=NULL){
+        count++;
+    head=head->next;
+    }
+    printf("length is %d\n",count);
+    return 0;
+}
+void traverse(struct node *head)
+{
+    printf("%d\n",head->data);
+    while(head->next!=NULL)
+    {
+        head=head->next;
+        printf("%d\n",head->data);
+
+    }
+}
+void recursive(struct node *head)
+{
+
+    if(head->next==NULL){
+        printf("%d\n",head->data);
+        return;
+    }
+    recursive(head->next);
+    printf("%d\n",head->data);
+}
+void sort(struct node *head)
+{
+    struct node *i,*j;
+    i=head;
+    while(i->next!=NULL)
+    {
+        j=i->next;
+        while(j->next!=NULL)
+        {
+            if(i->data>j->data)
+            {
+                int temp=j->data;
+                j->data=i->data;
+                i->data=temp;
+            }
+            j=j->next;
+
+        }
+        i=i->next;
+    }
+}
+int main()
+{
+    int count;
+    int d;
+    struct node *head;
+    head=(struct node*)malloc(sizeof(struct node));
+    head=NULL;
+    insertfrist(&head,6);
+    insertfrist(&head,9);
+    insertfrist(&head,12);
+    insertfrist(&head,19);
+    insertmiddle(head,1,13);
+    insertend(head,112);
+    traverse(head);
+    length(head);
+recursive(head);
+printf("\n");
+sort(head);
+traverse(head);
+}
