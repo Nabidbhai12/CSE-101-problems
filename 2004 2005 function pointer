@@ -1,0 +1,34 @@
+#include<stdio.h>
+int invert1(int num,int pos)
+{
+    return num & ~(1<<pos);
+}
+int invert0(int num,int pos)
+{
+    return num | (1<<pos);
+}
+int test(int num,int pos)
+{
+    if(num & 1<<pos)
+        return 1;
+    else
+        return 0;
+}
+int main()
+{
+
+    int (*funptr[])(int,int)={invert0,invert1};
+   unsigned int num;
+    scanf("%d",&num);
+    int p=0;
+    int replica=num;
+    while(replica)
+    {
+        int a=test(num,p);
+        num=(funptr[a])(num,p);
+        printf("%d\n",num);
+        replica=replica>>1;
+        p++;
+
+    }
+}
