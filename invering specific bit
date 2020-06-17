@@ -1,0 +1,17 @@
+#include<stdio.h>
+//toggling bits
+int main()
+{
+    unsigned short int a;
+    scanf("%d",&a);
+    if((a) & 1<<1)
+    {
+        a= a & ~(1<<1)
+    }
+    else
+    {
+        a=a | (1<<6);
+        
+    }
+    
+}
