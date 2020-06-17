@@ -1,0 +1,14 @@
+#include<stdio.h>
+int main()
+{
+    int  ch;
+    scanf("%d",&ch);
+    //printf("%c\n",ch);
+    //while()
+    //{
+        if(ch & 1<<((sizeof(ch)*8)-1))
+            printf("negative\n");
+        else
+            printf("positive\n");
+    //}
+}
