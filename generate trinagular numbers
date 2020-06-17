@@ -1,0 +1,14 @@
+#include<stdio.h>
+int triangular(int num)
+{
+    if(num==1)
+        return num;
+    else
+        return num+triangular(num-1);
+}
+int main()
+{
+    int n;
+    while(scanf("%d",&n)==1)
+        printf("%d",triangular(n));
+}
