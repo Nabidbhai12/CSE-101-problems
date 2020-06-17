@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<string.h>
+void kill(char *str)
+{
+    int count=0;
+    int a=0;
+    while(str[a]!='\0')
+    {
+        if(str[a]!=32)
+        {
+            str[a-count]=str[a];
+a++;
+        }
+        else
+        {
+            a++;
+            count++;
+        }
+
+    }
+    str[a-count]='\0';
+    printf("%s\n",str);
+}
+int main()
+{
+    char str[100];
+    scanf(" %[^\n]",str);
+    kill(str);
+}
