@@ -1,0 +1,18 @@
+#include<stdio.h>
+int main()
+{
+    unsigned short int n,replica;
+    scanf("%d",&n);
+    replica=n;
+    int count=0;
+    while(count<=14 && replica)
+    {
+
+
+        n=n | (1<<count);
+        count+=2;
+        replica=replica>>2;
+    }
+    printf("%d\n",n);
+
+}
