@@ -1,0 +1,65 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+struct emp
+{
+    char name[100];
+    int salary;
+    int workh;
+};
+int main()
+{
+    FILE *fptr;
+    fptr=fopen("employee.txt","r");
+    if(fptr==NULL)
+    {
+        printf("mar pasa");
+        exit(EXIT_FAILURE);
+    }
+    struct emp nabid[1000];
+    char str[10000];
+    int a=0;
+    while(fgets(str,sizeof(str),fptr))
+    {
+        /*int t=0;
+        while(str[t]!='\t')
+        {
+            nabid[a].name[t++]=str[t++];
+        }
+        t++;*/
+        sscanf(str," %[^\'0-9'] %d %d",&nabid[a].name,&nabid[a].salary,&nabid[a].workh);
+        printf("%s %d %d\n",nabid[a].name,nabid[a].salary,nabid[a].workh);
+        a++;
+
+    }
+    fclose(fptr);
+    for(int q=0;q<a;q++)
+    {
+        for(int r=q+1;r<a;r++)
+        {
+            if(nabid[q].salary>nabid[r].salary)
+            {
+                struct emp temp;
+                strcpy(temp.name,nabid[r].name);
+                temp.workh=nabid[r].workh;
+                temp.salary=nabid[r].salary;
+                strcpy(nabid[r].name,nabid[q].name);
+                nabid[r].salary=nabid[q].salary;
+                nabid[r].workh=nabid[q].workh;
+                nabid[q].salary=temp.salary;
+                nabid[q].workh=temp.workh;
+                strcpy(nabid[q].name,temp.name);
+            }
+        }
+    }
+    FILE *fptr2;
+    fptr2=fopen("eeeeee.txt","w");
+    int q=0;
+    while(q<a)
+    {
+        fprintf(fptr2,"%s ",nabid[q].name);
+        fprintf(fptr2,"%d %d\n",nabid[q].salary,nabid[q].workh);
+        q++;
+    }
+    fclose(fptr2);
+}
