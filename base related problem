@@ -1,0 +1,69 @@
+#include<stdio.h>
+int power(int num,int pow)
+{
+    if(pow==0)
+        return 1;
+    if(pow==1)
+        return num;
+    else
+        return num*power(num,pow-1);
+}
+static int count=0;
+int base1(int num,int base)//when base is less or equal then 10
+{
+    if(num==0)
+        return 0;
+        else
+    {
+        if(count==0)
+            count+=1;
+        else
+            count*=10;
+        return (num%base)*count+base1(num/base,base);
+    }
+
+}
+int base10(int  num,int base)
+{
+    int r=0;
+    char str[10000];
+    while(num)
+    {
+        int rem=num%base;
+        if(rem<10)
+            str[r++]=rem+48;
+        else
+            str[r++]=rem+55;
+            num/=base;
+    }
+
+    for(int u=0;u<r/2;u++)
+    {
+        r--;
+        char temp=str[r];
+        str[r]=str[u];
+        str[u]=temp;
+    }
+    printf("%s\n",str);
+
+}
+static int aa=-1;
+int base2(int num,int base)
+{
+    if(num!=0){
+            aa++;
+        return (num%10)*power(base,aa)+base2(num/10,base);
+    }
+else
+    return 0;
+}
+
+
+
+int main()
+{
+    int num,base;
+    while(scanf("%d %d",&num,&base)==2)
+        base10(num,base);
+
+}
