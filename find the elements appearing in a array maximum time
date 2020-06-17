@@ -1,0 +1,49 @@
+#include<stdlib.h>
+#include<stdio.h>
+int myfnc(int *arr,int size)
+{
+    int count,maxi;
+    for(int a=0;a<size;a++)
+    {
+        for(int b=a+1;b<size;b++)
+        {
+            if(arr[a]>arr[b])
+            {
+                int temp=arr[b];
+                arr[b]=arr[a];
+                arr[a]=temp;
+            }
+        }
+    }
+    int max=arr[0];
+    count=1;
+    maxi=1;
+    for(int a=0;a<size-1;a++)
+    {
+
+        count=1;
+        while(arr[a]==arr[a+1])
+            {
+                count++;
+                a++;
+            }
+            if(count>maxi)
+            {
+                printf("count %d for arr[a] %d\n",count,arr[a]);
+                maxi=count;
+                max=arr[a];
+
+            }
+    }
+    printf("%d\n",maxi);
+    return max;
+}
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int *arr=(int*)malloc(sizeof(int)*n);
+    for(int a=0;a<n;a++)
+        scanf("%d",arr+a);
+    printf("%d\n",myfnc(arr,n));
+}
