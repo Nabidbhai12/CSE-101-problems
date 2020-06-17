@@ -1,0 +1,46 @@
+#include<stdio.h>
+int arr[25],arr2[25];
+int main()
+{
+    char str1[100],str2[100];
+    scanf(" %[^\n]",str1);
+    scanf(" %[^\n]",str2);
+    char *ptr=str1;
+    int t=0;
+    while(*ptr!='\0')
+    {
+        if(*ptr>='a' && *ptr<='z')
+            *ptr-=32;
+        if(*ptr>='A' && *ptr<='Z'){
+        arr[*ptr-65]+=1;
+        }
+        ptr++;
+    }
+    char *ptr2=str2;
+    while(*ptr2!='\0')
+    {
+        if(*ptr2>='a' && *ptr2<='z')
+        {
+            *ptr2-=32;
+        }
+        if(*ptr2>='A' && *ptr2<='Z')
+        {
+            arr2[*ptr2-65]+=1;
+
+        }
+        ptr2++;
+    }
+    for(int a=0;a<26;a++)
+    {
+        if(arr[a]!=arr2[a])
+        {
+            printf("%c:%d %d\n",a+65,arr[a],arr2[a]);
+            printf("NOT ANAGRAMS");
+            return;
+        }
+        //printf("%c %d\n",a+65,arr[a]);
+        //printf("%c %d\n",a+65,arr2[a]);
+    }
+    printf("ANAGRAMS\n");
+    return;
+}
