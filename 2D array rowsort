@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<stdlib.h>
+void print(int **arr,int row,int col)
+{
+    for(int a=0;a<row;a++)
+    {
+        for(int b=0;b<col;b++)
+            printf("%d ",*(*(arr+a)+b));
+            printf("\n");
+    }
+
+}
+int rowsort(int **arr,int row,int col);
+int colsort(int **arr,int row,int col);
+int main()
+{
+    int row,col;
+    scanf("%d %d",&row,&col);
+    int **arr;
+    arr=(int**)malloc(sizeof(int*)*row);
+    for(int a=0;a<row;a++)
+        arr[a]=(int*)malloc(sizeof(int)*col);
+    for(int a=0;a<row;a++)
+    {
+        for(int b=0;b<col;b++)
+            scanf("%d",(*(arr+a)+b));
+printf("\n");
+        }
+        print(arr,row,col);
+        rowsort(arr,row,col);
+        print(arr,row,col);
+ free(arr);
+}
+int rowsort(int **arr,int row,int col)
+{
+    for(int ctr=0;ctr<row;ctr++)
+    {
+        for(int a=0;a<col;a++)
+        {
+            for(int b=a+1;b<col;b++)
+            {
+                if(arr[ctr][b]<arr[ctr][a])
+                {
+                    int temp=arr[ctr][b];
+                    arr[ctr][b]=arr[ctr][a];
+                    arr[ctr][a]=temp;
+
+                }
+            }
+        }
+    }
+}
