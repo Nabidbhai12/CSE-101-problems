@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<stdarg.h>
+
+int f1(int n,...)
+{
+    va_list ap;
+    va_start(ap,n);
+    printf("(");
+    for(int a=0;a<n;a++)
+    {
+        if(a==n-1)
+            printf("%d",va_arg(ap,int));
+            else
+        printf("%d,",va_arg(ap,int));
+
+
+    }
+    printf(")");
+    printf("\n");
+    return 0;
+}
+
+
+
+
+int main()
+{
+    f1(2,3,4);
+    f1(4,5,6,7,8);
+
+}
