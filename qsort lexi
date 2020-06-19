@@ -1,0 +1,31 @@
+#include<stdio.h>
+int cmpfnc(char *a,char *b)
+{
+    char *p1=a,*p2=b;
+    while(*p1!='\0' && *p2!='\0')
+    {
+        if(*p1==*p2)
+        {
+            p1++;
+            p2++;
+        }
+        else
+        {
+            return *p1-*p2;
+        }
+
+    }
+    return strlen(a)-strlen(b);
+
+}
+int main()
+{
+    char str[150][32];
+    int n;
+    scanf("%d",&n);
+    for(int a=0;a<n;a++)
+        scanf(" %[^\n]",str[a]);
+    qsort(str,n,sizeof(str[0]),cmpfnc);
+    for(int a=0;a<n;a++)
+        printf("%s\n",str[a]);
+}
