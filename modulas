@@ -1,0 +1,48 @@
+#include<stdio.h>
+int f1(float num)
+{
+    int ceil,floor,round;
+    if(num>=0)
+    {
+         floor=(int)num;
+         ceil=((num)-(int)num==0)?floor:floor+1;
+         round=(num-0.5)<floor?floor:ceil;
+        printf("floor %d ceil %d round %d\n",floor,ceil,round);
+    }
+    else
+    {
+         ceil=(int)(num);
+         floor=((int)num-(num)==0)?ceil:ceil-1;
+         round=(num+0.5)>ceil?ceil:floor;
+        printf("%d %d %d\n",ceil,floor,round);
+    }
+    return ceil;
+
+}
+float mod(float  num,int mod)
+{
+    if(num==0)
+        return 0;
+    else if(num>0)
+    {
+int rem=(int)(num/mod);
+rem=rem*mod;
+return num-mod;
+
+
+
+    }
+    else
+    {
+        num=-num;
+        int rem=f1((num/mod));
+        rem=rem*mod;
+        printf("%d %f\n",rem,num);
+        return rem-num;
+
+    }
+}
+int main()
+{
+printf("ans %f\n",mod(-15,7));
+}
