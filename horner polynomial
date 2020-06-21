@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<stdlib.h>
+double horner(double a[],int n,double x)
+{
+    double sum=a[n]*x;
+    n--;
+    while(n>=0)
+    {
+        sum=sum+a[n];
+        if(n>0)
+        sum=sum*x;
+        n--;
+
+    }
+    return sum;
+}
+int main()
+{
+    int n;
+
+    scanf("%d",&n);
+    double *arr=(double*)malloc(sizeof(double)*(n+1));
+    for(int a=0;a<=n;a++)
+        scanf("%lf",&arr[a]);
+double x;
+scanf("%lf",&x);
+printf("%lf\n",horner(arr,n,x));
+
+}
