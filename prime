@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int seive(int *arr,int num)
+{
+    for(int a=0;a<=num;a++)
+       *(arr+a)=a;
+    for(int q=2;q*q<=num;q++)
+    {
+        for(int b=2;b<=num;b++)
+        {
+            if((q*b)>num)
+                break;
+            if(arr[q*b]!=-1){
+                arr[q*b]=-1;
+            }
+
+        }
+    }
+
+}
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int *arr=(int*)malloc(sizeof(int)*(n+1));
+    seive(arr,n);
+    int count=0;
+    for(int a=2;a<=n;a++)
+    {
+        if(arr[a]!=-1){
+            printf("%d ",arr[a]);
+            count++;
+        }
+    }
+    printf("\n");
+    int e=0;
+    int *arr2=(int*)malloc(sizeof(int)*count);
+    for(int a=2;a<=n;a++)
+    {
+        if(arr[a]!=-1)
+        {
+            arr2[e]=arr[a];
+            e++;
+        }
+    }
+    for(int a=0;a<e;a++)
+        printf("%d ",arr2[a]);
+    printf("\n");
+    int flag=0;
+    for(int r=2;r<=e;r++)
+    {
+
+        for(int u=r+1;u<=e;u++)
+        {
+            if(arr2[r]+arr2[u]==n){
+                    flag=-1;
+                printf("%d + %d = %d\n",arr2[r],arr2[u],n);
+                break;
+            }
+
+            if(arr2[r]+arr2[u]>n)
+                break;
+        }
+    }
+    if(flag==0)
+        printf("sorryyyy");
+}
