@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<stdlib.h>
+void remve(int arr[],int n,int v)
+{
+    for(int a=0;a<n;a++)
+    {
+        if(arr[a]==v)
+        {
+            int temp=a;
+            while(temp<n-1)
+            {
+                arr[temp]=arr[temp+1];
+                temp++;
+            }
+            arr[temp]=0;
+
+
+            return;
+        }
+    }
+
+}
+int main()
+{
+    int n;
+    int arr[10000];
+    scanf("%d",&n);
+    int v;
+    scanf("%d",&v);
+    for(int a=0;a<n;a++)
+        scanf("%d",&arr[a]);
+    remve(arr,n,v);
+    for(int b=0;b<n;b++)
+        printf("%d ",arr[b]);
+}
