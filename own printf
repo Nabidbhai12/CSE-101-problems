@@ -1,0 +1,117 @@
+#include<stdarg.h>
+#include<stdlib.h>
+#include<string.h>
+#include<stdio.h>
+void inta(int ch)
+{
+
+    int count=0;
+    int num=ch;
+    while(ch!=0)
+    {
+        ch/=10;
+        count++;
+    }
+    int t=0;
+    char *s=(char*)calloc((count+1),(sizeof(char)));
+    printf("%s\n",s);
+    while(num>0)
+    {
+        s[t]=48+(num%10);
+        num/=10;
+        t++;
+
+    }
+    s[t]='\0';
+    int len=t-1;
+    for(int a=0;a<t/2;a++)
+    {
+        char temp=s[a];
+        s[a]=s[len];
+        s[len]=temp;
+        len--;
+    }
+//puts(s);
+for(int a=0;a<t;a++)
+{
+    putch(s[a]);
+}
+
+}
+void floata(double num)
+{
+    int n=(int)num;
+    inta(n);
+    double rem=num-n;
+    //printf("rem = %lf\n",rem);
+    while(1)
+    {
+        if(rem-(int)rem<0.0001){
+                break;
+}
+        else{
+                rem*=10;
+           // printf("rem npw %lf\n",rem);
+        }
+    }
+    putch('.');
+    inta(rem);
+
+}
+void chara(int ch)
+{
+
+    putch(ch);
+}
+void print(const char *str,...)
+{
+    float p;
+    int ch;
+    va_list ap;
+    va_start(ap,str);
+    char *fmt;
+    for(fmt=str;*fmt!='\0';fmt++)
+    {
+        while(*fmt!='%')
+        {
+            putch(*fmt);
+
+            fmt++;
+        }
+        fmt++;
+        switch(*fmt)
+        {
+        case 'c':
+             ch=va_arg(ap,int);
+             chara(ch);
+              break;
+        case 'd':
+             ch=va_arg(ap,int);
+             if(ch<0){
+                putch('-');
+                ch=-ch;
+            }
+            inta(ch);
+            break;
+        case 'f':
+             p=va_arg(ap,double);
+             if(p<0)
+            {
+                putch('-');
+                p=-p;
+            }
+           floata(p);
+           break;
+
+        }
+    }
+va_end(ap);
+}
+int main(){
+int q=119;
+double aa=12.34;
+int a=123;
+char b='z';
+print("%d   %f  %c",q,aa,b);
+
+}
