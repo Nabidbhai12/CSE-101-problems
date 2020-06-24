@@ -1,0 +1,51 @@
+#include<stdio.h>
+int f1(int n,int x)
+{
+    int y=0;
+    int sum=1;
+    if(sum==n)
+        return y;
+    else
+    { while(1)
+    {
+        sum=sum*x;
+        y++;
+        if(sum==n)
+            return y;
+        if(sum>n)
+            return -1;
+
+    }
+    }
+}
+int f2(int n)
+{
+    int s1,s2;
+    n=n-1;
+    s1=f1(n,2);
+    if(s1==-1){
+    printf("BIG NO\n");
+    return;
+}
+else
+{
+    s2=f1(s1,2);
+    if(s2==-1)
+    {
+        printf("NO\n");
+        return;
+    }
+    else
+    {
+        printf("fermat\n");
+        return;
+    }
+}
+
+}
+int main()
+{
+    int n,x;
+    while(scanf("%d",&n)==1)
+    f2(n);
+}
