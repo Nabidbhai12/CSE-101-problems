@@ -1,0 +1,70 @@
+#include<stdlib.h>
+#include<stdio.h>
+int seive(int *arr,int size)
+{
+
+    for(int a=0;a<size;a++)
+        arr[a]=a;
+    for(int i=2;i*i<size;i++)
+    {
+        for(int j=2;j<size;j++)
+        {
+            if(i*j>=size)
+                break;
+            if(arr[i*j]!=-1)
+                arr[i*j]=-1;
+
+        }
+    }
+    /*int count=0;
+    for(int a=2;a<size;a++)
+    {
+        if(arr[a]!=-1){
+            printf("%d ",arr[a]);
+            count++;
+        }
+    }
+    printf("TOTAL PRIMES = %d\n",count);*/
+
+}
+void twinprime(int *arr,int size)
+{
+    int count=0;
+    int t=2;
+    while(t<size)
+    {
+        if(arr[t]==-1)
+            count++;
+        else
+        arr[t-count]=arr[t];
+        t++;
+    }
+    int len=t-count;
+    for(int a=2;a<len;a++)
+    {
+        if(arr[a+1]-arr[a]==2)
+        {
+            printf("twin primes founded (%d %d)\n",arr[a],arr[a+1]);
+        }
+        else if(arr[a+1]-arr[a]<2)
+        {
+            if(arr[a+2]-arr[a]==2)
+                printf("special %d %d\n",arr[a+2],arr[a]);
+        }
+        else
+            continue;
+    }
+
+
+   // t=2;
+    //while(t<)
+
+}
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int *arr=(int*)malloc(sizeof(int*)*n);
+    seive(arr,n);
+    twinprime(arr,n);
+}
