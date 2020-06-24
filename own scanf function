@@ -1,0 +1,80 @@
+#include<stdio.h>
+#include<stdarg.h>
+char *getdeci()
+{
+    printf("function is here\n");
+    char ch=0;
+    char *s=(char*)malloc(sizeof(char)*100);
+    int t=0;
+    while(1)
+    {
+        s[t]=getchar();
+        if(s[t]==32){
+
+            break;
+        }
+        t++;
+    }
+    s[t]='\0';
+    puts(s);
+    return s;
+}
+int makedeci( char *str)
+{
+    int n=0;
+    while(*str!='\0')
+    {
+        n=n*10;
+        n=n+((*str)-48);
+
+        str++;
+
+    }
+    printf("num is %d\n",n);
+    return n;
+}
+void scan(const char *str,...)
+{
+    char *p;
+    va_list ap;
+    va_start(ap,str);
+    int tt=1;
+    while(tt--)
+    {
+        if(*str=='%')
+        {
+            str++;
+            switch(*str)
+                   {
+                   case 'd':
+                     p=  getdeci();
+                      //printf("%s\n",p);
+                      int *ptr2=va_arg(ap,int *);
+
+                      int ptr=makedeci(p);
+                      *ptr2=ptr;
+                    break;
+                   }
+        }
+        str++;
+
+
+    }
+    va_end(ap);
+}
+
+
+
+
+
+
+
+
+
+
+int main()
+{
+    int a;
+    scan("%d",&a);
+    printf("calling from main %d\n",a);
+}
