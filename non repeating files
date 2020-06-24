@@ -1,0 +1,41 @@
+#include<stdio.h>
+int cmp(const char *a,const char *b)
+{
+    return *(int*)a-*(int*)b;
+}
+int f1(int arr[],int n)
+{
+    qsort(arr,n,sizeof(int),cmp);
+    int count=0,t=0;
+    while(t<n-1)
+    {
+        if(arr[t]==arr[t+1])
+        {
+            int temp=arr[t];
+            while(temp==arr[t])
+                t++;
+        }
+        else
+        {
+            printf(" unique %d\n",arr[t]);
+            t++;
+            count++;
+        }
+    }
+    if(arr[t]!=arr[t-1])
+    {
+        printf("%d",arr[t]);
+        count++;
+    }
+    return count;
+}
+int main()
+{
+    int n;
+    int arr[10000];
+    scanf("%d",&n);
+    for(int a=0;a<n;a++)
+        scanf("%d",(arr+a));
+        printf("%d",f1(arr,n));
+
+}
