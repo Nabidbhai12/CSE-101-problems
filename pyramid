@@ -1,0 +1,31 @@
+#include<stdio.h>
+#define pyramid(n){\
+int line=1;\
+while(line<=n)\
+{\
+    int space=1;\
+    while(space<=n-line)\
+    {\
+        printf(" ");\
+        space++;\
+    }\
+    int count=line;\
+    int ele=1;\
+    while(ele<=2*line-1)\
+    {\
+        printf("%d",count);\
+        \
+        ele++;\
+        if(ele<=line)\
+            count--;\
+        else\
+            count++;\
+        \
+    }\
+    printf("\n");\
+    line++;}\
+}
+int main()
+{
+    pyramid(10);
+}
