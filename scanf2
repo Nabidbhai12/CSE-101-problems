@@ -1,0 +1,147 @@
+#include<stdlib.h>
+#include<stdio.h>
+#include<stdarg.h>
+void stringcopy(char *s1,char *s2)
+{
+    while(*s2!='\0')
+    {
+        *s1=*s2;
+        s1++;
+        s2++;
+    }
+    *s1='\0';
+
+}
+char *getdeci()
+{
+    printf("function is here\n");
+    char ch=0;
+    char *s=(char*)malloc(sizeof(char)*100);
+    int t=0;
+    while(1)
+    {
+        s[t]=getchar();
+        if(s[t]==32){
+
+            break;
+        }
+        t++;
+    }
+    s[t]='\0';
+   // puts(s);
+    return s;
+}
+int makedeci( char *str)
+{
+    int n=0;
+    while(*str!='\0')
+    {
+        n=n*10;
+        n=n+((*str)-48);
+
+        str++;
+
+    }
+    //printf("num is %d\n",n);
+    return n;
+}
+
+double makedouble(char *str)
+{
+    double n1=0;
+while(*str!='.')
+{
+    if(*str=='\0')
+        return n1;
+    n1*=10;
+    n1+=(*str-48);
+    str++;
+}
+str++;
+double n2=0;
+while(*str!='\0')
+{
+    n2*=10;
+    n2=n2+(*str-48);
+    str++;
+}
+while(n2>1)
+{
+    n2/=10;
+}
+printf("number is %lf\n",n1+n2);
+return n1+n2;
+
+}
+char *getstring()
+{
+    int r=0;
+    char *arr=(char*)malloc(sizeof(char)*1000);
+    while(1)
+    {
+        char ch=getchar();
+        arr[r]=ch;
+        if(ch==32)
+        break;
+        r++;
+    }
+    arr[r]='\0';
+    printf("calling from getstring %s\n",arr);
+    return arr;
+}
+void scan(const char *str,...)
+{
+
+    char *p,*p2,*p3,*p4;
+    va_list ap;
+    va_start(ap,str);
+
+    while(1)
+    {
+        if(*str=='%')
+        {
+            str++;
+            switch(*str)
+                   {
+                   case 'd':
+                     p=  getdeci();
+                      //printf("%s\n",p);
+                      int *ptr2=va_arg(ap,int *);
+
+                      int ptr=makedeci(p);
+                      *ptr2=ptr;
+                    break;
+                   case 'f':
+                    p2=getdeci();
+                    double *ptr3=va_arg(ap,double *);
+                    double ptr4=makedouble(p2);
+                    *ptr3=ptr4;
+                    break;
+                   case 's':
+                 p3=getstring();
+                 char *ptr10=va_arg(ap,char *);
+                 stringcopy(ptr10,p3);
+                 break;
+                   case 'c':
+                    p4=va_arg(ap,char *);
+                    *p4=getchar();
+                    break;
+
+                   }
+        }
+        if(*str=='\0')
+            break;
+        str++;
+
+
+    }
+    va_end(ap);
+}
+int main()
+{
+    char b;
+    char str[1000];
+    double a;
+    scan("%c",&b);
+    printf("calling from main %c\n",b);
+}
