@@ -1,0 +1,36 @@
+#include<stdio.h>
+int digit(int num)
+{
+    int count=0;
+    while(num)
+    {
+        num=num>>1;
+        count++;
+    }
+    return count;
+}
+int f1(int num)
+{
+    int p=digit(num);
+    int t=p-1;
+    int count=0;
+    printf("digit %d t at %d \n",p,t);
+    while(count<p/2)
+    {
+        int rem1=(num>>count) & (1);
+        int rem2=(num>>t) & (1);
+
+        t--;
+        count++;
+        printf("rem1 %d rem2 %d\n",rem1,rem2);
+        if((rem1 ^ rem2))
+           return 0;
+    }
+    return 1;
+}
+int main()
+{
+    int n;
+    while(scanf("%d",&n)==1)
+        printf("%d\n",f1(n));
+}
