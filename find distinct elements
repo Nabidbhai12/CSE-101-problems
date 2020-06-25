@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<stdlib.h>
+int comparator(const char *a,const char *b)
+{
+    return *(int*)a-*(int*)b;
+}
+int f1(int arr[],int size)
+{
+    qsort(arr,size,sizeof(int),comparator);
+    int a=0;
+    int count=1;
+    int temp=arr[a];
+    a++;
+    for(int a=0;a<size;a++)
+        printf("%d\t",arr[a]);
+    printf("\n");
+    while(a<size)
+    {
+
+       while(temp==arr[a])
+       {
+
+        a++;
+        if(a>=size)
+            return count;
+       }
+       count++;
+       temp=arr[a];
+
+       a++;
+       printf("count %d temp %d a %d\n",count,temp,a);
+        //1 1 2 2 3 4 5
+
+    }
+    return count;
+}
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int arr[10000];
+    for(int a=0;a<n;a++)
+        scanf("%d",&arr[a]);
+        printf("%d\n",f1(arr,n));
+
+}
