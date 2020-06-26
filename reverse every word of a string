@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<string.h>
+void reverse(char *str)
+{
+    char *ptr2=NULL,*store=NULL;
+    char *ptr=str;
+    while(*ptr!='\0')
+    {
+        ptr2=ptr;
+        int count=0;
+        while(*ptr!=32 && *ptr!='\0')
+        {
+            ptr++;
+                count++;
+        }
+        store=ptr;
+        ptr--;
+        int t=0;
+        while(t<(count/2))
+        {
+            char temp=*ptr;
+            *ptr=*ptr2;
+            *ptr2=temp;
+            t++;
+            ptr2++;
+            ptr--;
+        }
+if(*store!='\0')
+    store++;
+        ptr=store;
+
+    }
+
+}
+int main()
+{
+    char str1[100],str2[100];
+    scanf(" %[^\n]",str1);
+    reverse(str1);
+    printf("%s\n",str1);
+}
