@@ -1,0 +1,57 @@
+#include<stdio.h>
+struct nabid
+{
+    int ele;
+   int max;
+};
+int insert(int *arr,int n)
+{
+    for(int a=0;a<n;a++)
+        scanf("%d",(arr+a));
+}
+int cmp(const char *a,const char *b)
+{
+    return *(int*)a-*(int*)b;
+}
+int mode(int *arr,int nn)
+{
+    struct nabid n;
+    int temp,count=0;
+    n.max=1;
+    n.ele=arr[0];
+    temp=arr[0];
+    qsort(arr,nn,sizeof(int),cmp);
+    for(int a=0;a<nn;a++)
+        printf("%d ",arr[a]);
+    int a=0;
+    while(a<nn)
+    {
+        if(temp==arr[a])
+            count++;
+        else
+        {
+            temp=arr[a];
+            count=0;
+            continue;
+        }
+
+
+
+        if(count>n.max)
+        {
+            n.max=count;
+            n.ele=arr[a];
+        }
+        a++;
+    }
+
+    printf("max = %d ele = %d\n",n.max,n.ele);
+}
+int main()
+{
+    int arr[100];
+    int n;
+    scanf("%d",&n);
+    insert(arr,n);
+    mode(arr,n);
+}
