@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int f1(char *str1,char *str2)
+{
+    while(*str1 && *str2)
+    {
+        if(*str1!=*str2)
+            return 0;
+        str1++;
+        str2++;
+    }
+    return (*str2=='\0');
+
+}
+int f2(char *str1,char *str2)
+{
+    int count=0,max=0;
+    while(*str1!='\0')
+    {
+        if(*str2==*str1 && f1(str1,str2))
+        {
+            max=count;
+            str1++;
+        }
+        else
+        {
+            str1++;
+            count++;
+        }
+    }
+    printf("max is %d\n",max);
+}
+int main()
+{
+    char str1[1000],str2[1000];
+    scanf(" %[^\n]",str1);
+    scanf(" %[^\n]",str2);
+    f2(str1,str2);
+}
