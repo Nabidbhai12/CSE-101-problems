@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+int cmp(const char *a,const char *b)
+{
+    return *(int*)a-*(int*)b;
+
+}
+int jumpsearch(int arr[],int n,int num)
+{
+    int step=(int)sqrt(n);
+    int t=step;
+int prev=0;
+while(arr[prev]<num)
+{
+    if(step>=n || arr[step]>num)
+        break;
+    else
+    {
+        prev=step;
+        step+=t;
+    }
+
+}
+while(arr[prev]<num)
+    prev++;
+if(arr[prev]==num)
+    return prev+1;
+else
+    return -1;
+}
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int *arr=(int*)malloc(sizeof(int)*n);
+    for(int a=0;a<n;a++)
+        scanf("%d",(arr+a));
+        int num;
+        scanf("%d",&num);
+
+    qsort(arr,n,sizeof(int),cmp);
+printf("%d\n",jumpsearch(arr,n,num));
+}
