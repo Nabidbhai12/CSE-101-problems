@@ -1,0 +1,58 @@
+#include<stdio.h>
+int getcofactors(int **arr,int **temp,int mrow,int mcol,int size)
+{
+    int i=0,j=0;
+    for(int r=0;r<size;r++)
+    {
+        for(int c=0;c<size;c++)
+        {
+            if(r!=mrow && c!=mcol)
+            {
+                temp[i][j++]=arr[r][c];
+                if(j==size-1)
+                {
+                    j=0;
+                    i++;
+                }
+            }
+
+        }
+    }
+}
+int f1(int **arr,int size)
+{
+    int det=0;
+    if(size==1)
+        return arr[0][0];
+    else
+    {
+        int **temp;
+        temp=(int**)malloc(sizeof(int*)*size);
+        for(int a=0;a<size;a++)
+            temp[a]=(int*)malloc(sizeof(int)*size);
+
+        int flag=1;
+        for(int k=0;k<size;k++){
+        getcofactors(arr,temp,0,k,size);
+        det=det+(flag*arr[0][k]*f1(temp,size-1));
+        flag*=-1;
+        }
+        return det;
+    }
+}
+int main()
+{
+    int **nabid,n;
+    scanf("%d",&n);
+    nabid=(int**)malloc(sizeof(int*)*n);
+    for(int a=0;a<n;a++)
+        nabid[a]=(int*)malloc(sizeof(int)*n);
+
+        for(int r=0;r<n;r++)
+        {
+            for(int c=0;c<n;c++)
+                scanf("%d",(*(nabid+r)+c));
+        }
+        int t=f1(nabid,n);
+        printf("%d\n",t);
+}
