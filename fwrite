@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct book
+{
+    char title[1000];
+    char author[1000];
+    int price;
+};
+int main()
+{
+    struct book nabid[10];
+    for(int a=0;a<3;a++)
+    {
+        scanf(" %[^\n]",nabid[a].title);
+        scanf(" %[^\n]",nabid[a].author);
+        scanf("%d",&nabid[a].price);
+    }
+    FILE *ptr;
+    ptr=fopen("bookinfo.bin","wb");
+    if(ptr==NULL)
+    {
+        printf("ERROR\n");
+        exit(1);
+    }
+    for(int a=0;a<3;a++){
+    fwrite(nabid,sizeof(nabid),1,ptr);
+    }
+    fclose(ptr);
+}
