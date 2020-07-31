@@ -1,0 +1,38 @@
+#include<string.h>
+#include<stdlib.h>
+#include<stdio.h>
+struct book
+{
+    char title[1000];
+    char author[1000];
+    int price;
+};
+int main()
+{
+    struct book abid;
+    FILE *fptr;
+    fptr=fopen("bookinfo.bin","rb");
+    if(fptr==NULL)
+    {
+        printf("error\n");
+        exit(1);
+    }
+    char name[100];
+    scanf(" %[^\n]",name);
+    int a=0;
+    while(a<3)
+    {
+
+        fread(&abid,sizeof(abid),1,fptr);
+        printf("%s %s %d\n",abid.title,abid.author,abid.price);
+a++;
+if(strcmp(name,abid.title)==0)
+{
+    printf("price %d\n",abid.price);
+    return;
+
+}
+    }
+    fclose(fptr);
+    printf("sorry\n");
+}
