@@ -1,0 +1,19 @@
+#include<stdio.h>
+#include<stdlib.h>
+int f1(int n,char ini,char des,char aux)
+{
+    if(n==1)
+    {
+        printf("%c to %c\n",ini,des);
+        return;
+    }
+    f1(n-1,ini,aux,des);
+    printf("%c to %c\n",ini,des);
+    f1(n-1,aux,des,ini);
+}
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    f1(n,'A','B','C');
+}
