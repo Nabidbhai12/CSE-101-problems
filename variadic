@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdarg.h>
+double f1(const char *str,...)
+{
+    va_list ap;
+    va_start(ap,str);
+    char str2[1000];
+char *s='a';
+int sum=0;
+double count=0;
+    while(1)
+    {
+
+         s=va_arg(ap,char * );
+
+          if(s==NULL)
+            break;
+         printf("string %s\n",s);
+         int d=va_arg(ap,int);
+         sum+=d;
+         count++;
+         printf(" price %d\n",d);
+    }
+    printf("%lf\n",sum/count);
+}
+int main()
+{
+  f1("booklist","math",100,"science",200,"english",300,NULL);
+
+}
